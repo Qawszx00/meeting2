@@ -1,0 +1,23 @@
+<h2><a id="dynamicLink" href="#">第二會議室</a></h2>
+
+   <script>
+       // 取得當前年月並轉換為指定格式
+       function getDynamicURL() {
+           const baseURL = "https://garms.nutc.edu.tw/ActView/VRCalenderView?pl_code=2205&vr_num=1&ym=";
+           const now = new Date();
+           const year = now.getFullYear(); // 取得西元年份
+           const month = now.getMonth() + 1; // 取得當前月份 (0-11，因此需要加1)
+           
+           // 將年份轉為民國年 (台灣)
+           const taiwanYear = year - 1911;
+           
+           // 格式化月份為兩位數字，例如：01, 02, ..., 12
+           const formattedMonth = month < 10 ? '0' + month : month;
+
+           // 生成最終的 URL，將年份和月份拼接到基礎 URL 後面
+           return `${baseURL}${taiwanYear}${formattedMonth}`;
+       }
+
+       // 設定動態生成的 URL 到 a 標籤
+       document.getElementById("dynamicLink").href = getDynamicURL();
+   </script>
